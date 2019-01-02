@@ -1,3 +1,3 @@
 # demonai
 Project to create an ai demon
-Andrew commit
+Andrew commit Sup boi 
