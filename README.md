@@ -1,2 +1,3 @@
 # demonai
-Prodontmergeject to create an ai demon
+Project to create an ai demon
+Andrew commit
