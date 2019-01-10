@@ -52,7 +52,7 @@
 				// model
 
 				var loader = new THREE.GLTFLoader();
-				loader.load( 'resources/sample-anim.glb', function( gltf ) {
+				loader.load( 'resources/sample-anim-v2.glb', function( gltf ) {
 
 					model = gltf.scene;
 					scene.add( model );
@@ -60,7 +60,7 @@
 					createGUI( model, gltf.animations );
 
 				}, function (e) {
-          console.error(e);
+          console.log(e);
         }, function( e ) {
 
 					console.error( e );
@@ -98,17 +98,20 @@
 					var clip = animations[ i ];
 					var action = mixer.clipAction( clip );
 					actions[ clip.name ] = action;
-        /*
-					if ( emotes.indexOf( clip.name ) >= 0 || states.indexOf( clip.name ) >= 4 ) {
 
-							action.clampWhenFinished = true;
-							action.loop = THREE.LoopOnce;
 
-					}
-        */
-        states.push(clip.name);
+      // separate states (loops) and emotes ( 1 time)
+        if (i>=2){
+          states.push(clip.name);
+
+        } else {
+          action.clampWhenFinished = true;
+          action.loop = THREE.LoopOnce;
+          emotes.push(clip.name);
+        }
 
 				}
+        console.log("Number of animations: " + animations.length);
 
 				// states
 
